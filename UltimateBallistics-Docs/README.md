@@ -9,6 +9,7 @@ This documentation is for people configuring and using Ultimate Ballistics in Un
 3. [Explosions and Blueprint nodes](03-explosions-and-blueprint-api.md)
 4. [Traps and Blueprint workflows](04-traps-and-blueprint-workflows.md)
 5. [Troubleshooting and limitations](05-troubleshooting-and-limits.md)
+6. [Worked Blueprint recipes](06-blueprint-recipes.md)
 
 ## Scope and requirements
 

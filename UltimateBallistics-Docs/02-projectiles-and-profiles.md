@@ -48,7 +48,22 @@ Penetration is disabled by default. The profile also exposes optional angle-base
 - **Use Proximity Fuse** is off by default. When enabled, **Proximity Radius** defaults to `250 cm` and **Proximity Channel** defaults to Pawn.
 - **Arm Delay Seconds** defaults to `0.1 seconds`.
 
-A fuse needs an explosion profile on **Explosion On Impact** to apply the plugin's explosion behavior. Test the fuse in an open area and check the assigned collision channel for proximity detection.
+The time fuse counts from projectile spawn, not from impact. Its `On Expired`
+event can drive a custom Blueprint explosion. For the built-in time-fuse blast,
+enable **Explode On Impact** and assign an asset to **Explosion On Impact**.
+That also makes the projectile explode on its first collision, so it is not a
+timer-only setup. See the
+[timed grenade recipe](06-blueprint-recipes.md) for a timer-only Blueprint
+workflow.
+
+The proximity fuse uses **Explosion On Impact** when it triggers. If that field
+is disabled for editing, temporarily enable **Explode On Impact**, assign the
+profile, and then turn **Explode On Impact** off again to avoid contact
+detonation. Proximity checks use **Proximity Channel** (Pawn by default) while
+the projectile is simulating. The movement trace runs first, so a blocking
+impact can end the projectile before the proximity check; an impact that stops
+the ballistic simulation also stops further proximity checks. Do not use this
+fuse as a substitute for a placed mine.
 
 ## Configure impact effects
 

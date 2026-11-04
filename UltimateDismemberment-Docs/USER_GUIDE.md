@@ -2,7 +2,8 @@
 
 This guide covers setup and use entirely through Unreal Editor and Blueprints.
 
-> **Engine:** Unreal Engine 5.8 or later.  
+> **Engine:** Unreal Engine 5.8 or later.
+>
 > **Plugin version:** 1.0. Blueprint node and Details-panel labels are shown in their Unreal Editor spelling.
 
 ## Contents
@@ -53,10 +54,10 @@ flowchart LR
 4. In **Components**, choose **Add** and add **Ultimate Dismemberment Component**.
 5. Select the component and confirm **Dismemberment Enabled** is checked.
 6. Leave **Target Mesh Name (empty = auto)** empty to let the component locate the character mesh automatically.
-7. For a humanoid skeleton matching the plugin's default bone layout, keep **Auto-Populate Default Zones** enabled. If **Dismemberment Zones** is empty, the plugin fills it at startup.
+7. For a humanoid skeleton, use the default zones. To edit them before testing, click **Populate Default Zones (bouton)**. At runtime, an empty **Dismemberment Zones** list is automatically populated with these zones, even if **Auto-Populate Default Zones** is disabled. For a custom skeleton, add your own zones before starting play.
 8. Compile and save the Blueprint.
 
-The **Populate Default Zones** button replaces the current zone entries with the preset. Use it only when you want to start over from that preset; configure zones manually for a custom skeleton.
+The **Populate Default Zones (bouton)** button replaces the current zone entries with the preset. Use it only when you want to start over from that preset; configure zones manually for a custom skeleton.
 
 ## 3. Configure dismemberment zones
 
@@ -122,9 +123,9 @@ The **Apply Damage To Limb** node, available from a component reference, also ap
 ### Rules to check
 
 - Damage is multiplied by **Global Limb Damage Multiplier**.
-- Severance requires **Can Be Severed** to be enabled.
-- A single hit must meet **Min Single Hit Damage To Sever**.
-- If **Required Weapon Tags (optional)** contains tags, the damage must provide the required weapon tags.
+- Damage first reduces the zone's health. Severance is possible only when that health reaches zero and **Can Be Severed** is enabled.
+- The hit that reduces health to zero must meet **Min Single Hit Damage To Sever**, after **Global Limb Damage Multiplier**. Exception: a zone that is already **Crippled** can be severed by the next hit if the other rules are met.
+- If **Required Weapon Tags (optional)** contains tags, the **Weapon Tags** pin must share at least one of them. An empty list applies no tag filter.
 - **Force Sever Limb** bypasses normal health and damage checks. Reserve it for explicitly scripted events.
 
 ## 5. Events and gameplay logic
@@ -140,7 +141,7 @@ In the Event Graph, drag the component from **Components** and add events for it
 | **OnCriticalLimbSevered** | Trigger the game's own defeat or death logic. |
 | **OnStatusChanged** | Update animation, UI, or AI from the received summary. |
 
-A critical zone does not automatically kill the character by default. In **Settings**, **Dispatch Critical Limb Hook** is enabled by default and **Request Owner Death On Critical Limb** is disabled by default. Connect the critical event to your own defeat logic, or explicitly enable the requested behavior if it suits your game.
+In **Settings**, **Dispatch Critical Limb Hook** is enabled by default and **Request Owner Death On Critical Limb** is disabled by default. When a critical zone is severed, the component broadcasts **OnCriticalLimbSevered** and calls the interface's **OnDismembermentOwnerDefeated** flow if it is implemented. It also attempts to pass defeat to a compatible health component. **Request Owner Death On Critical Limb** allows the actor to be destroyed as a last resort if no compatible health path is found. Choose one death path to avoid duplicate handling, and test it with your game's health system.
 
 For centralized gameplay logic, implement **DismembermentInterface** in the character Blueprint's **Class Settings > Implemented Interfaces**. Useful interface events include **OnDismembermentLimbSevered**, **OnDismembermentCriticalLimbSevered**, **OnDismembermentOwnerDefeated**, and **OnDismembermentApplyBleedDamage**.
 
@@ -178,7 +179,7 @@ Assign optional severance and bleeding sounds in the component's **Audio** secti
 
 ## 8. Tags, state, and animation
 
-Each zone can provide **Severed Tag** and **Crippled Tag**. Gameplay Tags are optional; they only affect behavior when your Blueprints check them.
+Each zone can provide **Severed Tag** and **Crippled Tag**. Gameplay Tags are optional: active tags can be queried with **Get Active Dismemberment Tags** or from **Active Tags** in **Get Dismemberment Status Summary**. Assigning them does not automatically add tags to another tag system in your game.
 
 Useful nodes for reading state:
 
@@ -249,3 +250,5 @@ To limit cost:
 - [ ] Effect assets are assigned only when needed.
 - [ ] Characters with multiple meshes have a valid Visual Override setup.
 - [ ] Test in gameplay, then in a network session if the project uses multiplayer.
+
+For complete node wiring and test values, see the [Blueprint Recipes](BLUEPRINT_RECIPES.md).

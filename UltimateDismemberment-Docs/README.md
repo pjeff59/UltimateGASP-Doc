@@ -1,6 +1,6 @@
 # Ultimate Dismemberment Documentation
 
-Blueprint-only user documentation for Unreal Engine 5.3+.
+Blueprint-only user documentation for Unreal Engine 5.8+.
 
 ## Start here
 

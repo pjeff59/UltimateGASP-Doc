@@ -1,5 +1,7 @@
 # Examples and troubleshooting
 
+For complete StateTree and Blueprint graph setups, see the [concrete Blueprint recipes](08_Blueprint_Recipes.md).
+
 ## Example: conditional choice
 
 1. Set the global variable before `Start Dialogue`, or call `Set Bool` on the instance while a line is visible and before the branch is reached.

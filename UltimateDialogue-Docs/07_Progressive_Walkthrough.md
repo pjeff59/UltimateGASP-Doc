@@ -31,8 +31,8 @@ The first dialogue state is the entry point.
   - Leave `Choice Timeout` at `-1` to wait for the player.
 - `Accept` — `Dialogue: Branch`
   - Enable `Use Condition`.
-  - `Condition`: `Player.HasMap`, Bool, `Equal`, `false`.
-- `True State`: `NoMap`; `False State`: `Accepted`.
+  - `Condition`: `Player.HasMap`, Bool, `Equal`, `true`.
+  - `True State`: `NoMap`; `False State`: `Accepted`.
 - `Accepted` — `Dialogue: Trigger`
   - `Event Name`: `Merchant.AcceptedMapOffer`
   - `Next State`: `Finish`.

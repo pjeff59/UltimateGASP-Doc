@@ -36,6 +36,8 @@ In `Dialogue: Line`, `Auto Advance After` is measured in seconds:
 - Equal to `0`: waits for manual confirmation, even when `Voice Over` is assigned.
 - Less than `0` (the default): uses the `Voice Over` duration if one is assigned; otherwise, waits for manual confirmation.
 
+`Voice Over` does not play the sound automatically. Start playback from your Blueprint UI; its duration can then be used as the automatic-advance delay.
+
 ## Choices and conditions
 
 A choice entry is shown only when `Enabled` is on and its `Condition` is true. The index passed to `Advance` or received by `On Choice Selected` is based on the **visible** list after filtering.

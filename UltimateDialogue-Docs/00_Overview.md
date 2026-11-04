@@ -18,7 +18,7 @@ Ultimate Dialogue lets you compose conversations with StateTree assets and contr
 - Follow the [Blueprint quickstart](02_Blueprint_Quickstart.md).
 - Review the [StateTree tasks](03_Authoring_Dialogue_StateTrees.md).
 - Customize the [UI](04_UI_and_Themes.md) and [Blueprint events and variables](05_Blueprint_Reference.md).
-- Use the [examples and troubleshooting guide](06_Examples_and_FAQ.md), followed by the [progressive walkthrough](07_Progressive_Walkthrough.md).
+- Use the [examples and troubleshooting guide](06_Examples_and_FAQ.md), followed by the [progressive walkthrough](07_Progressive_Walkthrough.md) and [concrete Blueprint recipes](08_Blueprint_Recipes.md).
 
 ## Compatibility and important limits
 

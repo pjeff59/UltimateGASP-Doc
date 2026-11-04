@@ -2,7 +2,7 @@
 
 This guide covers setup and use entirely through Unreal Editor and Blueprints.
 
-> **Engine:** Unreal Engine 5.3 or later.  
+> **Engine:** Unreal Engine 5.8 or later.  
 > **Plugin version:** 1.0. Blueprint node and Details-panel labels are shown in their Unreal Editor spelling.
 
 ## Contents

@@ -2,6 +2,8 @@
 
 This guide covers the user-facing workflow in Unreal Editor and editor Blueprints. Interface labels are kept in English so they can be found as shown in the editor.
 
+For detailed terrain recipes and editor-Blueprint graphs, see [Worked Terrain and Blueprint Examples](BLUEPRINT_EXAMPLES.md).
+
 ## Quick start
 
 1. Install the complete compatible UltimateLandscape distribution in the project's `Plugins` folder. In **Edit > Plugins**, enable **UltimateLandscape** and restart the editor when prompted. Keep required dependencies from the supplied distribution enabled.
